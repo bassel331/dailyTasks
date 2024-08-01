@@ -1,4 +1,4 @@
-CREATE TABLE Course(
+CREATE TABLE COURSE(
     Id INT PRIMARY KEY ,
     Name varchar(20),
     Description varchar(40),

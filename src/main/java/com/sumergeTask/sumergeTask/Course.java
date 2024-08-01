@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("prototype")
+
 public class Course {
    private int id;
     private String name;
     private String description;
     private int credit;
+
 
     public String getName() {
         return name;
