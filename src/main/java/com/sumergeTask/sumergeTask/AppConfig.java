@@ -17,11 +17,12 @@ import com.example.demo.AppConfigg;
 @Import(com.example.demo.AppConfigg.class)
 public class AppConfig {
 
+    // to test the overriding of the bean
 //    @Bean
 //    @Qualifier("firstCourseRecommender")
 //    public CourseRecommender firstCourseRecommender() {
 //
-//        return new FirstCourseRecommender();
+//        return new SecondCourseRecommender();
 //    }
 
     @Bean
