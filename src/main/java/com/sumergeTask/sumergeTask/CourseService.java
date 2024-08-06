@@ -13,17 +13,19 @@ import java.util.List;
 @Component
 public class CourseService {
     private CourseRecommender courseRecommender;
-
     private JdbcTemplate template;
 
     @Autowired
     public CourseService(@Qualifier("firstCourseRecommender")CourseRecommender courseRecommender) {
-        courseRecommender = courseRecommender;
-    }
-    @Autowired
-    public void setCourseRecommender(@Qualifier("secondCourseRecommender")CourseRecommender courseRecommender) {
         this.courseRecommender = courseRecommender;
     }
+//    @Autowired
+//    public void setCourseRecommender(@Qualifier("secondCourseRecommender")CourseRecommender courseRecommender) {
+//        this.courseRecommender = courseRecommender;
+//    }
+public CourseRecommender getCourseRecommender() {
+    return courseRecommender;
+}
     public JdbcTemplate getTemplate() {
         return template;
     }
@@ -51,15 +53,29 @@ public class CourseService {
             }
         });
     }
+    public Course getCourseById(int id) {
+        String sql = "SELECT * FROM Course WHERE Id = ?";
+        return template.queryForObject(sql, new Object[]{id}, new RowMapper<Course>() {
+            public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Course course = new Course();
+                course.setId(rs.getInt("Id"));
+                course.setName(rs.getString("Name"));
+                course.setDescription(rs.getString("Description"));
+                course.setCredit(rs.getInt("Credit"));
+                return course;
+            }
+        });
+    }
+
 
     public void deleteCourse(Course course) {
         String sql="delete from Course where Id = ?";
         template.update(sql,course.getId());
 
     }
-    public void updateCourse(Course course,String name,String description,int credit) {
+    public void updateCourse(Course oldCourse,Course newCourse) {
         String sql = "update Course set Name = ?, Description = ?, Credit = ? where Id = ?";
-        template.update(sql,name,description,credit,course.getId());
+        template.update(sql,newCourse.getName(),newCourse.getDescription(),newCourse.getCredit(),oldCourse.getId());
 
     }
 

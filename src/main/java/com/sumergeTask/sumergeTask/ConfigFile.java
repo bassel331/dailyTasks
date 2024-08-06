@@ -15,4 +15,6 @@ public class ConfigFile {
     public CourseRecommender secondCourseRecommender() {
         return new SecondCourseRecommender();
     }
+
+
 }
