@@ -62,6 +62,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>demo</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 		<!-- JUnit (Optional, for testing purposes) -->
 		<dependency>
 			<groupId>junit</groupId>

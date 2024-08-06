@@ -17,6 +17,11 @@ public class SumergeTaskApplication {
 
 		CourseService courseService = context.getBean(CourseService.class);
 
+		//CourseRecommender courseRecommender = context.getBean(CourseRecommender.class);
+
+		//System.out.println(courseRecommender.recommendCourse());
+		System.out.println(courseService.getRecommendation());
+
 //		Course course1 =context.getBean(Course.class);
 //		course1.setId(1);
 //		course1.setName("Sumerge Task");
@@ -24,19 +29,19 @@ public class SumergeTaskApplication {
 //		course1.setCredit(5);
 //		System.out.println(course1);
 //
-		Course course2 =context.getBean(Course.class);
-		course2.setId(3);
-		course2.setName("333");
-		course2.setDescription(" description 3");
-		course2.setCredit(5);
+//		Course course2 =context.getBean(Course.class);
+//		course2.setId(3);
+//		course2.setName("333");
+//		course2.setDescription(" description 3");
+//		course2.setCredit(5);
 		//System.out.println(course2);
 
 		//System.out.println(course1 == course2);
 		//courseService.addCourse(course1);
-		courseService.addCourse(course2);
-		List<Course> coursesAvailable =courseService.getCourses();
-		System.out.println("Courses Available now are :"+coursesAvailable);
-		System.out.println("-----------------");
+//		courseService.addCourse(course2);
+//		List<Course> coursesAvailable =courseService.getCourses();
+//		System.out.println("Courses Available now are :"+coursesAvailable);
+//		System.out.println("-----------------");
 
 		//courseService.deleteCourse(course1);
 		//coursesAvailable=courseService.getCourses();

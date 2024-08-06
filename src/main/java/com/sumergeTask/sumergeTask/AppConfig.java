@@ -1,6 +1,7 @@
 package com.sumergeTask.sumergeTask;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -9,26 +10,33 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+import com.example.demo.AppConfigg;
 
 @Configuration
+@ComponentScan(basePackages = "com.sumergeTask.sumergeTask")
+@Import(com.example.demo.AppConfigg.class)
 public class AppConfig {
 
-    @Bean(name="firstCourseRecommender")
-    @Primary
-    public CourseRecommender firstCourseRecommender() {
-        return new FirstCourseRecommender();
-    }
-    @Bean(name="secondCourseRecommender")
+//    @Bean
+//    @Qualifier("firstCourseRecommender")
+//    public CourseRecommender firstCourseRecommender() {
+//
+//        return new FirstCourseRecommender();
+//    }
 
+    @Bean
+    @Qualifier("secondCourseRecommender")
     public CourseRecommender secondCourseRecommender() {
+
         return new SecondCourseRecommender();
     }
 
-    @Bean
-    public CourseService courseService() {
-        return new CourseService(secondCourseRecommender());
-    }
+//    @Bean
+//    public CourseService courseService() {
+//
+//        return new CourseService( secondCourseRecommender());
+//    }
+
     @Bean
     @Scope("prototype")
     public Course course() {

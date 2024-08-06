@@ -12,26 +12,32 @@ import java.util.List;
 
 @Service
 public class CourseService {
-    private CourseRecommender courseRecommender;
+
+
+    private final CourseRecommender courseRecommender;
     @Autowired
     private JdbcTemplate template;
 
     @Autowired
-    public CourseService(CourseRecommender courseRecommender) {
+    public CourseService(@Qualifier("firstCourseRecommender") CourseRecommender courseRecommender) {
+
         this.courseRecommender = courseRecommender;
     }
-    @Autowired
-    public void setCourseRecommender(@Qualifier("secondCourseRecommender")CourseRecommender courseRecommender) {
-        this.courseRecommender = courseRecommender;
-    }
+//    @Autowired
+//    public void setCourseRecommender(@Qualifier("secondCourseRecommender") CourseRecommender courseRecommender) {
+//        this.courseRecommender = courseRecommender;
+//    }
     public String getRecommendation() {
+
         return courseRecommender.recommendCourse();
     }
     public JdbcTemplate getTemplate() {
+
         return template;
     }
     @Autowired
     public void setTemplate(JdbcTemplate template) {
+
         this.template = template;
     }
     public void addCourse(Course course) {
