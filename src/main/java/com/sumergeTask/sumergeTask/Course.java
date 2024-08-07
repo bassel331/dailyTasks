@@ -1,13 +1,21 @@
 package com.sumergeTask.sumergeTask;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
+
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("prototype")
+@Entity
 public class Course {
-   private int id;
+
+    @Id
+    private Long id;
+
     private String name;
     private String description;
     private int credit;
@@ -20,11 +28,11 @@ public class Course {
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
