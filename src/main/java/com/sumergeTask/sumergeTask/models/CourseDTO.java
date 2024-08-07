@@ -1,4 +1,4 @@
-package com.sumergeTask.sumergeTask;
+package com.sumergeTask.sumergeTask.models;
 
 public class CourseDTO {
     private Long id;

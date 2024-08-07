@@ -1,5 +1,8 @@
 package com.sumergeTask.sumergeTask;
 
+import com.sumergeTask.sumergeTask.models.CourseRecommender;
+import com.sumergeTask.sumergeTask.models.FirstCourseRecommender;
+import com.sumergeTask.sumergeTask.models.SecondCourseRecommender;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

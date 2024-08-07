@@ -1,5 +1,9 @@
-package com.sumergeTask.sumergeTask;
+package com.sumergeTask.sumergeTask.controllers;
 
+import com.sumergeTask.sumergeTask.models.Course;
+import com.sumergeTask.sumergeTask.models.CourseDTO;
+import com.sumergeTask.sumergeTask.CourseMapper;
+import com.sumergeTask.sumergeTask.services.CourseService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

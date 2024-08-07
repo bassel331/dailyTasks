@@ -1,6 +1,8 @@
 package com.sumergeTask.sumergeTask;
 
 
+import com.sumergeTask.sumergeTask.models.Course;
+import com.sumergeTask.sumergeTask.models.CourseDTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;

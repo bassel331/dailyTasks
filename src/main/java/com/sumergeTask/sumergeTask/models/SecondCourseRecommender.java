@@ -1,6 +1,4 @@
-package com.sumergeTask.sumergeTask;
-
-import org.springframework.stereotype.Component;
+package com.sumergeTask.sumergeTask.models;
 
 public class SecondCourseRecommender implements CourseRecommender{
     @Override

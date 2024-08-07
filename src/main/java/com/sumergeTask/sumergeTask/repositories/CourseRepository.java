@@ -1,5 +1,6 @@
-package com.sumergeTask.sumergeTask;
+package com.sumergeTask.sumergeTask.repositories;
 
+import com.sumergeTask.sumergeTask.models.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

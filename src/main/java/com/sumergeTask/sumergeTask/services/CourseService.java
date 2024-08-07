@@ -1,5 +1,8 @@
-package com.sumergeTask.sumergeTask;
+package com.sumergeTask.sumergeTask.services;
 
+import com.sumergeTask.sumergeTask.repositories.CourseRepository;
+import com.sumergeTask.sumergeTask.repositories.CourseRepositoryPagination;
+import com.sumergeTask.sumergeTask.models.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

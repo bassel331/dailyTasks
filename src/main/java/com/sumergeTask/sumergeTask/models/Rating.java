@@ -1,4 +1,4 @@
-package com.sumergeTask.sumergeTask;
+package com.sumergeTask.sumergeTask.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
