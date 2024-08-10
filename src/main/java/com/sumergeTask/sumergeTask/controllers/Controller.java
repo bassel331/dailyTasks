@@ -31,7 +31,6 @@ public class Controller {
 
     @PostMapping("/add")
     public void addCourse(@RequestBody Course course) {
-        //Course course = courseMapper.DTOToCourse(courseDto);
         courseService.addCourse(course);
     }
     @PutMapping("/update/{id}")
@@ -40,6 +39,7 @@ public class Controller {
     }
     @DeleteMapping("delete/{id}")
     public void deleteCourse(@PathVariable Long id) {
+
         courseService.deleteCourse(id);
     }
     @GetMapping("/viewPag")

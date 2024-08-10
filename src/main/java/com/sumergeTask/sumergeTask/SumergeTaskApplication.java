@@ -13,7 +13,8 @@ public class SumergeTaskApplication {
 
 
 		ApplicationContext context =SpringApplication.run(SumergeTaskApplication.class, args);
-		System.out.println("-----------------");
+		//System.out.println("-----------------");
+
 
 
 

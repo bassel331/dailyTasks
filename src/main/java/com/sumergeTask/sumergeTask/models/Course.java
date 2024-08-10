@@ -1,14 +1,15 @@
 package com.sumergeTask.sumergeTask.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.mapstruct.Builder;
 
 @Entity
 public class Course {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_seq_gen")
+    @SequenceGenerator(name = "course_seq_gen", sequenceName = "course_seq", allocationSize = 1)
     private Long id;
-
     private String name;
     private String description;
     private int credit;
@@ -25,7 +26,7 @@ public class Course {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setID(Long id) {
         this.id = id;
     }
 
@@ -45,13 +46,13 @@ public class Course {
         this.credit = credit;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", credit=" + credit +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Course{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", description='" + description + '\'' +
+//                ", credit=" + credit +
+//                '}';
+//    }
 }
