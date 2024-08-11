@@ -38,6 +38,18 @@
 		<maven.compiler.target>22</maven.compiler.target>
 <!--		<sonar.host.url>http://localhost:9000</sonar.host.url>-->
 <!--		<sonar.login>sqp_56b1a6d1c71dbb95e71fbefe6c5c995ebbd4a22</sonar.login>-->
+		<sonar.host.url>http://localhost:9000</sonar.host.url>
+		<sonar.login>sqp_d94fb5881f32dbbb70fcf9d02c8e10fea7f533da</sonar.login>
+		<sonar.projectKey>testing</sonar.projectKey>
+		<sonar.projectName>testing</sonar.projectName>
+
+		<!-- Source and Test Directories -->
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.tests>src/test/java</sonar.tests>
+
+		<!-- Binaries and Reports -->
+		<sonar.java.binaries>${project.build.directory}/classes</sonar.java.binaries>
+		<sonar.junit.reportPaths>${project.build.directory}/surefire-reports</sonar.junit.reportPaths>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -92,23 +104,23 @@
 			<version>5.5.0</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
-			<scope>test</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>junit</groupId>-->
+<!--			<artifactId>junit</artifactId>-->
+<!--			<version>4.13.1</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 
 
 	</dependencies>
 
 	<build>
 		<plugins>
-<!--			<plugin>-->
-<!--				<groupId>org.sonarsource.scanner.maven</groupId>-->
-<!--				<artifactId>sonar-maven-plugin</artifactId>-->
-<!--				<version>3.9.1.2184</version>-->
-<!--			</plugin>-->
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.1.2184</version>
+			</plugin>
 
 			<plugin>
 				<groupId>org.jacoco</groupId>
