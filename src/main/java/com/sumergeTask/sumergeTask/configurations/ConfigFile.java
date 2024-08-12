@@ -1,4 +1,4 @@
-package com.sumergeTask.sumergeTask;
+package com.sumergeTask.sumergeTask.configurations;
 
 import com.sumergeTask.sumergeTask.models.CourseRecommender;
 import com.sumergeTask.sumergeTask.models.FirstCourseRecommender;

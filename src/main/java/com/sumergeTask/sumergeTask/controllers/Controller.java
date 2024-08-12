@@ -2,7 +2,7 @@ package com.sumergeTask.sumergeTask.controllers;
 
 import com.sumergeTask.sumergeTask.models.Course;
 import com.sumergeTask.sumergeTask.models.CourseDTO;
-import com.sumergeTask.sumergeTask.CourseMapper;
+import com.sumergeTask.sumergeTask.mappers.CourseMapper;
 import com.sumergeTask.sumergeTask.services.CourseService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class Controller {
 
     @Autowired
     private CourseService courseService;
-    private CourseMapper courseMapper = Mappers.getMapper(CourseMapper.class);
+    private final CourseMapper courseMapper = Mappers.getMapper(CourseMapper.class);
 
     @GetMapping("/view/{id}")
     public CourseDTO getCourseById(@PathVariable Long id) {
@@ -52,8 +52,5 @@ public class Controller {
     public List<CourseDTO> getCoursesByFilter(@PathVariable String name) {
         return courseMapper.CoursesToDTO(courseService.getCoursesByName(name));
     }
-//    @GetMapping("/discover")
-//    public String discover(){
-//        return courseService.getCourseRecommender().recommendCourse();
-//    }
+
 }

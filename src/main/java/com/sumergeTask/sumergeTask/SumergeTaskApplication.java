@@ -9,16 +9,16 @@ import java.util.List;
 @SpringBootApplication
 public class SumergeTaskApplication {
 
-	public static void main(String[] args) {
-
-
-		ApplicationContext context =SpringApplication.run(SumergeTaskApplication.class, args);
-		//System.out.println("-----------------");
-
-
-
-
-	}
+//	public static void main(String[] args) {
+//
+//
+//		ApplicationContext context =SpringApplication.run(SumergeTaskApplication.class, args);
+//		//System.out.println("-----------------");
+//
+//
+//
+//
+//	}
 
 
 }

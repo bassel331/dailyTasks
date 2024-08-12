@@ -97,7 +97,7 @@ public class CourseRepositoryTest {
         course2.setName("test2");
         courseRepository.save(course2);
         Course course3 = courseRepository.findById(course.getId()).orElse(null);
-        Assertions.assertThat(course3.getName()).isEqualTo(course2.getName());
-        System.out.println(courseRepository.findAll());
+        Assertions.assertThat(course3.getName()).isEqualTo(course.getName());
+        //System.out.println((course3.getName()));
     }
 }

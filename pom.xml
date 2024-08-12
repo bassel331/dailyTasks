@@ -36,8 +36,6 @@
 	<properties>
 		<maven.compiler.source>22</maven.compiler.source>
 		<maven.compiler.target>22</maven.compiler.target>
-<!--		<sonar.host.url>http://localhost:9000</sonar.host.url>-->
-<!--		<sonar.login>sqp_56b1a6d1c71dbb95e71fbefe6c5c995ebbd4a22</sonar.login>-->
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
 		<sonar.login>sqp_d94fb5881f32dbbb70fcf9d02c8e10fea7f533da</sonar.login>
 		<sonar.projectKey>testing</sonar.projectKey>
@@ -105,10 +103,8 @@
 			<scope>test</scope>
 		</dependency>
 <!--		<dependency>-->
-<!--			<groupId>junit</groupId>-->
-<!--			<artifactId>junit</artifactId>-->
-<!--			<version>4.13.1</version>-->
-<!--			<scope>test</scope>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-security</artifactId>-->
 <!--		</dependency>-->
 
 

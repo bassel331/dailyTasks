@@ -2,13 +2,12 @@ package com.sumergeTask.sumergeTask.ControllerTest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sumergeTask.sumergeTask.CourseMapper;
+import com.sumergeTask.sumergeTask.mappers.CourseMapper;
 import com.sumergeTask.sumergeTask.controllers.Controller;
 import com.sumergeTask.sumergeTask.models.Course;
 import com.sumergeTask.sumergeTask.models.CourseDTO;
 import com.sumergeTask.sumergeTask.services.CourseService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -101,6 +100,7 @@ public class CourseControllerTest {
                         .contentType("application/json")
                         .content(courseJson))
                 .andExpect(status().isOk());
+
     }
 
     @Test
@@ -141,7 +141,6 @@ public class CourseControllerTest {
 
     @Test
     void shouldReturnCoursesByFilter() throws Exception {
-        // Arrange: Create sample data
         Course course1 = new Course();
         course1.setID(1L);
         course1.setName("Math");
@@ -163,7 +162,6 @@ public class CourseControllerTest {
         when(courseService.getCoursesByName(anyString())).thenReturn(courseList);
         when(courseMapper.CoursesToDTO(courseList)).thenReturn(courseDTOList);
 
-        // Act: Perform a GET request to filter courses by name
         mockMvc.perform(get("/filter/Math"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1))

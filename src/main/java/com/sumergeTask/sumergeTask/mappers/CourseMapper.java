@@ -1,4 +1,4 @@
-package com.sumergeTask.sumergeTask;
+package com.sumergeTask.sumergeTask.mappers;
 
 
 import com.sumergeTask.sumergeTask.models.Course;

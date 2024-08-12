@@ -20,8 +20,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 public class CourseServiceTest {
     @InjectMocks
@@ -51,8 +51,26 @@ public class CourseServiceTest {
     @Test
     void getCourseById_ShouldThrowException_WhenCourseDoesNotExist() {
         when(courseRepository.findById(1L)).thenReturn(Optional.empty());
-        Assertions.assertThrows(NoSuchElementException.class, () -> courseService.getCourse(1L));
+        assertThrows(NoSuchElementException.class, () -> courseService.getCourse(1L));
 
+    }
+
+    @Test
+    void getAllCourses_ShouldReturnAllCourses() {
+        Course mockCourse = new Course();
+        mockCourse.setName("Test Course");
+        mockCourse.setDescription("Test Description");
+        mockCourse.setCredit(1);
+        Course mockCourse2 = new Course();
+        mockCourse2.setName("Test Course");
+        mockCourse2.setDescription("Test Description");
+        mockCourse2.setCredit(1);
+        List<Course> mockCourses = new ArrayList<>();
+        mockCourses.add(mockCourse);
+        mockCourses.add(mockCourse2);
+        when(courseRepository.findAll()).thenReturn(mockCourses);
+        List<Course> result = courseService.getAllCourses();
+        Assertions.assertEquals(mockCourses, result);
     }
 
     @Test
@@ -67,34 +85,6 @@ public class CourseServiceTest {
         verify(courseRepository).save(course);
     }
 
-    @Test
-    void getAllCourses_ShouldReturnAllCourses_WhenCourseExists() {
-        Course mockCourse = new Course();
-        mockCourse.setName("Test Course");
-        mockCourse.setDescription("Test Description");
-        mockCourse.setCredit(1);
-        Course mockCourse2 = new Course();
-        mockCourse2.setName("Test Course");
-        mockCourse2.setDescription("Test Description");
-        mockCourse2.setCredit(1);
-       List<Course> mockCourses = new ArrayList<>();
-        mockCourses.add(mockCourse);
-        mockCourses.add(mockCourse2);
-        when(courseRepository.findAll()).thenReturn(mockCourses);
-        List<Course> result = courseService.getAllCourses();
-        Assertions.assertEquals(mockCourses, result);
-    }
-//    @Test
-//    void shouldAddCourse_WhenCourseExists() {
-//        Course mockCourse = new Course();
-//        mockCourse.setId(1L);
-//        mockCourse.setName("Test Course");
-//        mockCourse.setDescription("Test Description");
-//        mockCourse.setCredit(1);
-//        courseRepository.save(mockCourse);
-//        when(courseRepository.findAll().size()).thenReturn(1);
-//        Assertions.assertEquals(courseService.getAllCourses().size(),1);
-//    }
 
     @Test
     void shouldUpdateCourse_WhenCourseExists() {
@@ -112,8 +102,6 @@ public class CourseServiceTest {
         Assertions.assertEquals(updatedCourse.getDescription(), mockCourse.getDescription());
 
 
-
-
     }
 
     @Test
@@ -124,46 +112,26 @@ public class CourseServiceTest {
         updatedCourse.setDescription("Test Description updatedCourse");
         updatedCourse.setCredit(8);
         when(courseRepository.findById(mockCourse.getId())).thenReturn(Optional.empty());
-        Assertions.assertThrows(NoSuchElementException.class, () -> courseService.updateCourse(mockCourse.getId(), updatedCourse));
-
-    }
-
-//    @Test
-//    void shouldDeleteCourse_WhenCourseExists() {
-//        Course mockCourse = new Course();
-//        mockCourse.setID(1L);
-//        courseService.addCourse(mockCourse);
-//
-//        // When
-//
-//        when(courseRepository.findById(1L)).thenReturn(Optional.of(mockCourse));
-//
-//        // Perform the deletion
-//        courseService.deleteCourse(mockCourse.getId());
-//
-//        Assertions.assertEquals(courseRepository.findAll().size(), 0);
-//
-//
-//    }
-
-    @Test
-    void shouldGetCoursesByName_WhenCourseExists() {
-        Course mockCourse = new Course();
-        mockCourse.setName("Test Course");
-        mockCourse.setDescription("Test Description");
-        mockCourse.setCredit(1);
-        List<Course> mockCourses = new ArrayList<>();
-        mockCourses.add(mockCourse);
-        when(courseRepository.findByName(mockCourse.getName())).thenReturn(mockCourses);
-        List<Course> result = courseService.getCoursesByName(mockCourse.getName());
-        Assertions.assertEquals(mockCourses, result);
+        assertThrows(NoSuchElementException.class, () -> courseService.updateCourse(mockCourse.getId(), updatedCourse));
     }
 
     @Test
-    void shouldNotGetCoursesByName_WhenCourseDoesNotExist() {
-        List<Course> mockCourses = new ArrayList<>();
-        when(courseRepository.findByName("1L")).thenReturn(mockCourses);
-        Assertions.assertThrows(NoSuchElementException.class, () -> courseService.getCoursesByName("1L"));
+    void shouldDeleteCourse_WhenCourseExists() {
+        Long courseId = 1L;
+        when(courseRepository.existsById(courseId)).thenReturn(true);
+
+        courseService.deleteCourse(courseId);
+
+        verify(courseRepository, times(1)).deleteById(courseId);
+    }
+
+    @Test
+    void shouldThrowException_WhenDeleteCourseNotFound() {
+        Long courseId = 1L;
+        when(courseRepository.existsById(courseId)).thenReturn(false);
+
+         assertThrows(NoSuchElementException.class, () -> {courseService.deleteCourse(courseId);
+        });
 
     }
 
@@ -190,20 +158,42 @@ public class CourseServiceTest {
 
         when(courseRepositoryPagination.findAll(pageable)).thenReturn(coursePage);
 
-        // When
         Page<Course> result = courseService.getCoursesByPagination(page, size);
 
-        // Then
         assertThat(result.getContent()).hasSize(2);
         assertThat(result.getContent().get(0).getName()).isEqualTo("Course 1");
         assertThat(result.getContent().get(1).getName()).isEqualTo("Course 2");
         assertThat(result.getTotalElements()).isEqualTo(2);
     }
+
     @Test
     void shouldNotGetCoursesByPagination_whenCourseDoeNotExists() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> courseService.getCoursesByPagination(-1,-1));
+        assertThrows(IllegalArgumentException.class, () -> courseService.getCoursesByPagination(-1,-1));
 
     }
+
+    @Test
+    void shouldGetCoursesByName_WhenCourseExists() {
+        Course mockCourse = new Course();
+        mockCourse.setName("Test Course");
+        mockCourse.setDescription("Test Description");
+        mockCourse.setCredit(1);
+        List<Course> mockCourses = new ArrayList<>();
+        mockCourses.add(mockCourse);
+        when(courseRepository.findByName(mockCourse.getName())).thenReturn(mockCourses);
+        List<Course> result = courseService.getCoursesByName(mockCourse.getName());
+        Assertions.assertEquals(mockCourses, result);
+    }
+
+    @Test
+    void shouldNotGetCoursesByName_WhenCourseDoesNotExist() {
+        List<Course> mockCourses = new ArrayList<>();
+        when(courseRepository.findByName("1L")).thenReturn(mockCourses);
+        assertThrows(NoSuchElementException.class, () -> courseService.getCoursesByName("1L"));
+
+    }
+
+
 
 
 }

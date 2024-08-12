@@ -26,9 +26,11 @@ public class CourseService {
         Optional<Course> course = courseRepository.findById(id);
         return course.orElseThrow(() -> new NoSuchElementException("Course not found for ID: " + id));
     }
+
     public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
+
     public void addCourse(Course course) {
         courseRepository.save(course);
     }
@@ -46,6 +48,7 @@ public class CourseService {
             throw new NoSuchElementException("Course not found for ID: " + id);
         }
     }
+
     public void deleteCourse(Long id) {
         if (courseRepository.existsById(id)) {
             courseRepository.deleteById(id);
@@ -54,8 +57,8 @@ public class CourseService {
 
         }
 
-
     }
+
     public Page<Course> getCoursesByPagination(int page, int size) {
         if (page < 0 || size <= 0) {
             throw new IllegalArgumentException("Page index must be non-negative and size must be positive.");
@@ -63,6 +66,7 @@ public class CourseService {
         Pageable pageable = PageRequest.of(page, size);
         return courseRepositoryPagination.findAll(pageable);
     }
+
     public List<Course> getCoursesByName(String name) {
         List<Course> courses = courseRepository.findByName(name);
         if (courses.isEmpty()) {
