@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import org.mapstruct.Builder;
 
 @Entity
+@Table(name = "courses")
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_seq_gen")
     @SequenceGenerator(name = "course_seq_gen", sequenceName = "course_seq", allocationSize = 1)
+
     private Long id;
     private String name;
     private String description;
