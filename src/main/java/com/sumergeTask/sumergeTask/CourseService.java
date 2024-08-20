@@ -23,18 +23,11 @@ public class CourseService {
 
         this.courseRecommender = courseRecommender;
     }
-//    @Autowired
-//    public void setCourseRecommender(@Qualifier("secondCourseRecommender") CourseRecommender courseRecommender) {
-//        this.courseRecommender = courseRecommender;
-//    }
     public String getRecommendation() {
 
         return courseRecommender.recommendCourse();
     }
-    public JdbcTemplate getTemplate() {
 
-        return template;
-    }
     @Autowired
     public void setTemplate(JdbcTemplate template) {
 

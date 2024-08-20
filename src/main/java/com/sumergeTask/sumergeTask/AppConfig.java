@@ -17,14 +17,6 @@ import com.example.demo.AppConfigg;
 @Import(com.example.demo.AppConfigg.class)
 public class AppConfig {
 
-    // to test the overriding of the bean
-//    @Bean
-//    @Qualifier("firstCourseRecommender")
-//    public CourseRecommender firstCourseRecommender() {
-//
-//        return new SecondCourseRecommender();
-//    }
-
     @Bean
     @Qualifier("secondCourseRecommender")
     public CourseRecommender secondCourseRecommender() {
@@ -32,11 +24,6 @@ public class AppConfig {
         return new SecondCourseRecommender();
     }
 
-//    @Bean
-//    public CourseService courseService() {
-//
-//        return new CourseService( secondCourseRecommender());
-//    }
 
     @Bean
     @Scope("prototype")
@@ -55,15 +42,11 @@ public class AppConfig {
     }
 
     @Bean
-
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        // Load and execute schema.sql
         try {
             String schemaSql = new String(Files.readAllBytes(Paths.get("src/main/resources/schema.sql")));
-            //System.out.println("Executing schema SQL: " + schemaSql);
-            //jdbcTemplate.execute(schemaSql);
         } catch (IOException e) {
             e.printStackTrace();
         }
