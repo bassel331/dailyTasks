@@ -27,7 +27,7 @@ public class SecurityConfig {
                .csrf(AbstractHttpConfigurer::disable)
                .addFilterBefore(new ValidationFilter(), UsernamePasswordAuthenticationFilter.class)
                .authorizeHttpRequests(authz -> authz
-                       .requestMatchers("viewAll","view/","viewPag").permitAll()
+                       .requestMatchers("viewAll","view/","viewPag","add").permitAll()
                        .anyRequest().authenticated())
                .httpBasic(Customizer.withDefaults());
 
